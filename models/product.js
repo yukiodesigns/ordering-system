@@ -6,4 +6,6 @@ const productSchema = new mongoose.Schema({
     price:{type:Number, required:true},
 })
 
-new Product = mongoose.model('Product', productSchema)
+const Product = mongoose.model('Product', productSchema)
+
+module.exports = Product

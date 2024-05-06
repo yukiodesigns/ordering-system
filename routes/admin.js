@@ -3,7 +3,7 @@ const Product = require('../models/product')
 const adminMiddleware = require('../middleware/admin')
 const router = express.Router()
 
-router.get('/products', adminMiddleware, async(req, res)=>{
+router.get('/products', async(req, res)=>{
  try {
     const products = await Product.find() 
     res.send(products)
@@ -12,7 +12,7 @@ router.get('/products', adminMiddleware, async(req, res)=>{
     res.status(500).json({ message: 'Server Error' });
  }
 })
-router.get('/products/:id', adminMiddleware, async(req, res)=>{
+router.get('/products/:id', async(req, res)=>{
     try {
        const product = await Product.findById(req.params.id)
        if(!product) return res.status(404). json({message:'Product not found'})
@@ -22,7 +22,7 @@ router.get('/products/:id', adminMiddleware, async(req, res)=>{
         res.status(500).json({ message: 'Server Error' }); 
     }
 })
-router.post('/products', adminMiddleware, async(req, res)=>{
+router.post('/products', async(req, res)=>{
     try {
         const {name, description, price} = req.body
         const product = new Product({name, description, price})
